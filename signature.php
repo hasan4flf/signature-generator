@@ -1,29 +1,17 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-         // Check Injection
-         function sanitize($data) {
-            $data   = trim($data);
-            $data   = stripslashes($data);
-            $data   = htmlspecialchars($data);
-            return $data;
-        }
-
-        // Get The form data
-        $photo      = sanitize($_POST['photo']);
-        $phone      = sanitize($_POST['phone']);
-        $link_phone = preg_replace('/[^0-9]/', '', $phone);
-        $ext        = sanitize($_POST['ext']);
-        $email      = sanitize($_POST['email']);
-    } else {
-        header('Location: ./');
-    }
+// Use htmlspecialchars to prevent XSS attacks by escaping HTML entities
+$fileUrl = isset($_GET['fileUrl']) ? htmlspecialchars($_GET['fileUrl']) : 'Not provided';
+$phone = isset($_GET['phone']) ? htmlspecialchars($_GET['phone']) : 'Not provided';
+$phone_link = preg_replace('/\D+/', '', $phone);
+$ext = isset($_GET['ext']) ? htmlspecialchars($_GET['ext']) : 'Not provided';
+$email = isset($_GET['email']) ? htmlspecialchars($_GET['email']) : 'Not provided';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta property="" content="" />
-        <title></title>
+        <title>FLF Signature Generator</title>
 		<style type="text/css">
 			#outlook a{padding:0;}
 			body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
@@ -131,7 +119,7 @@
                                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                                 <tr>
                                                                     <td valign="top">
-                                                                        <img src="https://drive.google.com/uc?export=view&id=<?php echo $photo ?>" class="user-photo" alt="User Photo" style="width:100%;"/>
+                                                                        <img src="<?php echo $fileUrl ?>" class="user-photo" alt="User Photo" style="width:100%;"/>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -148,10 +136,10 @@
                                                                     <td valign="top">
 			                                                            <div>
 			                                                                <a href="https://justinforjustice.com/"><img class="flf-logo" src="https://raw.githubusercontent.com/hasan4flf/email-signature/main/FLF-Logo-with-tagline.jpg" style="max-width:270px;"/></a><br>
-																			Tel: <a href="tel:+1<?php echo $link_phone ?>"><?php echo $phone ?></a> ext <?php echo $ext ?><br>
+																			Tel: <a href="tel:+1<?php echo $phone_link ?>"><?php echo $phone ?></a> ext <?php echo $ext ?><br>
 																			Fax: (424) 295-0557<br>
 																			<a href="mailto:<?php echo $email ?>"><?php echo $email ?></a><br>
-																			<a href="https://www.facebook.com/FarahiLawFirm">Facebook</a> <span>|</span> <a href="https://www.instagram.com/calljustinforjustice/">Instagram</a> <span>|</span> <a href="https://twitter.com/FarahilawF">Twitter</a><br>
+																			<a href="https://www.facebook.com/calljustinforjustice/">Facebook</a> <span>|</span> <a href="https://www.instagram.com/calljustinforjustice/">Instagram</a> <span>|</span> <a href="https://twitter.com/justin_4justice">Twitter</a><br>
 																			<a href="https://justinforjustice.com/">JustinForJustice.com</a><br>
 																			<a href="https://goo.gl/maps/zLTMzPyQBBfD9atw9">12079 W. Jefferson Blvd. Los Angeles, CA 90230</a>
 			                                                            </div>
