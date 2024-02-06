@@ -46,6 +46,8 @@ $(function() {
 			$(formMessages).removeClass('error');
 			$(formMessages).addClass('success');
 
+			$('.form-control').val('');
+
             var data = JSON.parse(response);
 
             if(data.status === 'success') {
