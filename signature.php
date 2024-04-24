@@ -163,7 +163,14 @@ $email = isset($_GET['email']) ? htmlspecialchars($_GET['email']) : 'Not provide
                                                     <tr>
                                                         <td colspan="2" valign="middle" id="utility">
                                                             <div>
-                                                                <img src="https://raw.githubusercontent.com/hasan4flf/email-signature/main/awards.png" style="width:100%;"/>
+																<?php
+																	if($email == "liz@farahilaw.com") {
+																		$award_img_url = "https://raw.githubusercontent.com/hasan4flf/signature-generator/main/images/awards-2.png";
+																	} else {
+																		$award_img_url = "https://raw.githubusercontent.com/hasan4flf/email-signature/main/awards.png";
+																	}
+																?>
+                                                                <img src="<?php echo $award_img_url; ?>" style="width:100%;"/>
 																<br>
                                                             </div>
                                                         </td>
