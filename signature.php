@@ -136,7 +136,13 @@ $email = isset($_GET['email']) ? htmlspecialchars($_GET['email']) : 'Not provide
                                                                     <td valign="top">
 			                                                            <div>
 			                                                                <a href="https://justinforjustice.com/"><img class="flf-logo" src="https://raw.githubusercontent.com/hasan4flf/email-signature/main/FLF-Logo-with-tagline.jpg" style="max-width:270px;"/></a><br>
-																			Tel: <a href="tel:+1<?php echo $phone_link ?>"><?php echo $phone ?></a> ext <?php echo $ext ?><br>
+																			Tel: <a href="tel:+1<?php echo $phone_link ?>"><?php echo $phone ?></a> 
+																			<?php
+																				if($ext != "") {
+																					echo "ext " . $ext;
+																				}
+																			?>
+																			<br>
 																			Fax: (424) 295-0557<br>
 																			<a href="mailto:<?php echo $email ?>"><?php echo $email ?></a><br>
 																			<a href="https://www.facebook.com/calljustinforjustice/">Facebook</a> <span>|</span> <a href="https://www.instagram.com/calljustinforjustice/">Instagram</a> <span>|</span> <a href="https://twitter.com/justin_4justice">Twitter</a><br>

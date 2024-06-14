@@ -18,10 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check that data was sent to the mailer.
     $errors = array();
 
-    if(isset($_POST['phone'], $_POST['ext'], $_POST['email'])) {
+    if(isset($_POST['phone'], $_POST['email'])) {
         $fields = array(
             'phone'     => $_POST['phone'],
-            'ext'       => $_POST['ext'],
             'email'     => $_POST['email'],
         );
 
